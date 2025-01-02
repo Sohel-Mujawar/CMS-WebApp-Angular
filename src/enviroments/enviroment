@@ -1,0 +1,6 @@
+export const environment = {
+  production: false,
+  BASE_URL: 'https://cdn.contentful.com',
+  SPACE_ID: 'kt5h6xa0za88',
+  ACCESS_TOKEN: 'ag92uLdPD8iFJKKihK1dEP1QufNEjwDBfrYC2w9Cijk'
+};

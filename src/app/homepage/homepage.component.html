@@ -1,0 +1,75 @@
+<app-header/>
+<app-search></app-search>
+
+
+<section class="bg-white ">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+      <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-black">Amazing and Delicious Food </h1>
+      <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Test Your Fav dish from luxury restaurant</p>
+      <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+         
+      </div>
+  </div>
+</section>
+
+<div *ngIf="errorMessage" class="text-red-500 font-semibold p-4">
+  {{ errorMessage }}
+</div>
+
+<div
+  *ngIf="assets.length > 0"
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"
+>
+  <div
+    *ngFor="let asset of assets"
+    class="asset-card bg-white shadow-md rounded-lg overflow-hidden transition transform hover:scale-105 flex flex-col justify-between"
+  >
+    <img
+      [src]="'https:' + asset.file.url"
+      [alt]="asset.title"
+      [width]="asset.file.details.image.width"
+      [height]="asset.file.details.image.height"
+      class="w-full h-48 object-cover"
+    />
+
+    <div class="p-4 flex-grow">
+      <h2 class="text-lg font-bold mb-2">{{ asset.title }}</h2>
+      <p *ngIf="asset.description" class="text-gray-600">
+        {{ asset.description }}
+      </p>
+      <div *ngIf="asset.prices" class="text-gray-800 font-semibold mt-2">
+        Price: ${{ asset.prices }}
+      </div>
+      <div *ngIf="asset.rating" class="text-yellow-500 mt-1">
+        Rating: {{ asset.rating }} ★
+      </div>
+    </div>
+
+    <div class="p-4">
+      <button (click)="navigateTo('/login')"
+        type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center w-full justify-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        <svg
+          class="w-4 h-4 me-2"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 18 21"
+        >
+          <path
+            d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"
+          />
+        </svg>
+        Buy now
+      </button>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="assets.length === 0 && !errorMessage"
+  class="text-center p-4 text-gray-700"
+>
+  No assets found.
+</div>
